@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import "../App.css";
-// const $ = require('jquery');
 
 class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hole: 9,
-      board: [1, 2, 3, 4, 5, 6, 7, 8, 9] // numbers correspond to the tile image via className. 9 starts as hole so it is omitted.
+      hole: 9, // keep track of which position has the empty tile
+      board: [1, 2, 3, 4, 5, 6, 7, 8, 9]
     };
     this.moveTile = this.moveTile.bind(this);
     this.legalMove = this.legalMove.bind(this);
     this.numToStr = this.numToStr.bind(this);
+    this.shuffle = this.shuffle.bind(this);
+  }
+
+  componentDidMount() {
+    setTimeout(this.shuffle, 1000);
   }
 
   legalMove(x) {
@@ -43,6 +47,9 @@ class Board extends Component {
 
   moveTile(x) {
     if (this.legalMove(x)) {
+      if ( !this.props.shuffling ) {
+        this.props.increment(); // update count of moves
+      }
       let b = this.state.board;
       let temp = b[x - 1];
       let dest = b[this.state.hole - 1];
@@ -70,11 +77,24 @@ class Board extends Component {
     return obj[n];
   }
 
+  shuffle() {
+    // make 100 random moves from starting position
+    let count = 0;
+    while ( count < 100) {
+      let t = Math.floor(Math.random() * 9) + 1; // the tile to move
+      if ( this.legalMove(t) ) {
+        this.moveTile(t);
+        count++;
+      }
+    }
+    this.props.endShuffle(); // mark shuffling as over
+  }
+
   render() {
     return (
       <div className="Board">
         {this.state.board.map((n, i) => {
-          i+=1;
+          i+=1; // tiles are 1-indexed
           let row = i < 4 ? 1 : i > 3 && i < 7 ? 2 : 3;
           let col = (i % 3);
           return (

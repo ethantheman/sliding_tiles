@@ -106,6 +106,24 @@
   background-size: 100%;
 }
 
+.moveTile-enter {
+  opacity: 0.01;
+}
+
+.moveTile-enter.moveTile-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.moveTile-leave {
+  opacity: 1;
+}
+
+.moveTile-leave.moveTile-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
