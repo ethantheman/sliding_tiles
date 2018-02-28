@@ -25,10 +25,8 @@
 .Board {
   height: 500px;
   width: 500px;
-  border: 2px solid black;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  margin-left: 50%;
+  margin: auto;
+  padding-top: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1px;
@@ -36,9 +34,8 @@
 }
 
 .one {
-  grid-column: 1;
-  grid-row: 1;
-  border: 1px solid black;
+/*  grid-column: 1;
+  grid-row: 1;*/
   background-image: url("./images/one.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -46,72 +43,67 @@
 }
 
 .two {
-  grid-column: 2;
-  grid-row: 1;
-  border: 1px solid black;
+/*  grid-column: 2;
+  grid-row: 1;*/
   background-image: url("./images/two.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .three {
-  grid-column: 3;
-  grid-row: 1;
-  border: 1px solid black;
+/*  grid-column: 3;
+  grid-row: 1;*/
   background-image: url("./images/three.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .four {
-  grid-column: 1;
-  grid-row: 2;
-  border: 1px solid black;
+/*  grid-column: 1;
+  grid-row: 2;*/
   background-image: url("./images/four.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .five {
-  grid-column: 2;
-  grid-row: 2;
-  border: 1px solid black;
+/*  grid-column: 2;
+  grid-row: 2;*/
   background-image: url("./images/five.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .six {
-  grid-column: 3;
-  grid-row: 2;
-  border: 1px solid black;
+/*  grid-column: 3;
+  grid-row: 2;*/
   background-image: url("./images/six.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .seven {
-  grid-column: 1;
-  grid-row: 3;
-  border: 1px solid black;
+/*  grid-column: 1;
+  grid-row: 3;*/
   background-image: url("./images/seven.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .eight {
-  grid-column: 2;
-  grid-row: 3;
-  border: 1px solid black;
+/*  grid-column: 2;
+  grid-row: 3;*/
   background-image: url("./images/eight.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .nine {
-  grid-column: 3;
-  grid-row: 3;
-  border: 1px solid black;
+/*  grid-column: 3;
+  grid-row: 3;*/
+  /*background-image: url("./images/nine.jpg");*/
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 @keyframes App-logo-spin {

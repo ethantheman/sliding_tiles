@@ -1,64 +1,91 @@
-import React, { Component } from 'react';
-import logo from '../logo.svg';
-import '../App.css';
+import React, { Component } from "react";
+import "../App.css";
+// const $ = require('jquery');
 
 class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hole: "nine"
-    }
+      hole: 9,
+      board: [1, 2, 3, 4, 5, 6, 7, 8, 9] // numbers correspond to the tile image via className. 9 starts as hole so it is omitted.
+    };
     this.moveTile = this.moveTile.bind(this);
     this.legalMove = this.legalMove.bind(this);
+    this.numToStr = this.numToStr.bind(this);
   }
 
-  legalMove(str) {
+  legalMove(x) {
     // only tiles that can be moved are those bordering hole (not diagonal)
-    let b = [["one", "two", "three"], 
-             ["four", "five", "six"], 
-             ["seven", "eight", "nine"]];
+    let b = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9]
+    ];
     let hole = this.state.hole;
     // return whether str is adjacent (not incl. diagonal) to hole
     let str_idx = [-1, -1];
     let hole_idx = [-1, -1];
-    for ( var i = 0; i < b.length; i++ ) {
-      if ( b[i].includes(str) ) {
-        str_idx = [i, b[i].indexOf(str)];
+    for (var i = 0; i < b.length; i++) {
+      if (b[i].includes(x)) {
+        str_idx = [i, b[i].indexOf(x)];
       }
-      if ( b[i].includes(hole) ) {
+      if (b[i].includes(hole)) {
         hole_idx = [i, b[i].indexOf(hole)];
       }
     }
-    console.log('idx of ', str, ': ', str_idx, ' and idx of ', hole, ': ', hole_idx);
-    return Math.abs(str_idx[0] - hole_idx[0]) === 1 && str_idx[1] - hole_idx[1] === 0 
-          || Math.abs(str_idx[1] - hole_idx[1]) === 1 && str_idx[0] - hole_idx[0] === 0 
+    return (
+      (Math.abs(str_idx[0] - hole_idx[0]) === 1 &&
+        str_idx[1] - hole_idx[1] === 0) ||
+      (Math.abs(str_idx[1] - hole_idx[1]) === 1 &&
+        str_idx[0] - hole_idx[0] === 0)
+    );
   }
 
-  moveTile(e) {
-    console.log(e.target.className);
-    if ( this.legalMove(e.target.className) ) {
+  moveTile(x) {
+    if (this.legalMove(x)) {
+      let b = this.state.board;
+      let temp = b[x - 1];
+      let dest = b[this.state.hole - 1];
+      b[x - 1] = dest;
+      b[this.state.hole - 1] = temp;
       this.setState({
-        hole: e.target.className
-      }, () => {
-        console.log('moved hole to ', this.state.hole);
+        hole: x,
+        board: b
       });
-    } else {
-      console.log('cant move that tile.');
     }
+  }
+
+  numToStr(n) {
+    let obj = {
+      1: "one",
+      2: "two",
+      3: "three",
+      4: "four",
+      5: "five",
+      6: "six",
+      7: "seven",
+      8: "eight",
+      9: "nine"
+    };
+    return obj[n];
   }
 
   render() {
     return (
       <div className="Board">
-        <div className="one" onClick={this.moveTile}></div>
-        <div className="two" onClick={this.moveTile}></div>
-        <div className="three" onClick={this.moveTile}></div>
-        <div className="four" onClick={this.moveTile}></div>
-        <div className="five" onClick={this.moveTile}></div>
-        <div className="six" onClick={this.moveTile}></div>
-        <div className="seven" onClick={this.moveTile}></div>
-        <div className="eight" onClick={this.moveTile}></div>
-        <div className="nine" onClick={this.moveTile}></div>
+        {this.state.board.map((n, i) => {
+          i+=1;
+          let row = i < 4 ? 1 : i > 3 && i < 7 ? 2 : 3;
+          let col = (i % 3);
+          return (
+            <div
+              className={this.numToStr(n)}
+              key={i}
+              style={{ gridColumn: `${col}`, gridRow: `${row}` }}
+              onClick={() => this.moveTile(i)}
+            />
+          );
+        })}
       </div>
     );
   }
