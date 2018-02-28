@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../App.css";
+import loading from "../images/loading.gif";
 
 class Board extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Board extends Component {
   }
 
   componentDidMount() {
-    setTimeout(this.shuffle, 1000);
+    setTimeout(this.shuffle, 2000);
   }
 
   legalMove(x) {
@@ -47,9 +48,6 @@ class Board extends Component {
 
   moveTile(x) {
     if (this.legalMove(x)) {
-      if ( !this.props.shuffling ) {
-        this.props.increment(); // update count of moves
-      }
       let b = this.state.board;
       let temp = b[x - 1];
       let dest = b[this.state.hole - 1];
@@ -58,6 +56,11 @@ class Board extends Component {
       this.setState({
         hole: x,
         board: b
+      }, () => {
+        if ( !this.props.shuffling ) {
+          this.props.increment(); // update count of moves
+          this.props.checkWon(this.state.board);
+        }
       });
     }
   }
