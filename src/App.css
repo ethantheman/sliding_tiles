@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 5s linear;
   height: 80px;
 }
 
@@ -20,6 +20,98 @@
 
 .App-intro {
   font-size: large;
+}
+
+.Board {
+  height: 500px;
+  width: 500px;
+  border: 2px solid black;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 50%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.one {
+  grid-column: 1;
+  grid-row: 1;
+  border: 1px solid black;
+  background-image: url("./images/one.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+}
+
+.two {
+  grid-column: 2;
+  grid-row: 1;
+  border: 1px solid black;
+  background-image: url("./images/two.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.three {
+  grid-column: 3;
+  grid-row: 1;
+  border: 1px solid black;
+  background-image: url("./images/three.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.four {
+  grid-column: 1;
+  grid-row: 2;
+  border: 1px solid black;
+  background-image: url("./images/four.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.five {
+  grid-column: 2;
+  grid-row: 2;
+  border: 1px solid black;
+  background-image: url("./images/five.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.six {
+  grid-column: 3;
+  grid-row: 2;
+  border: 1px solid black;
+  background-image: url("./images/six.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.seven {
+  grid-column: 1;
+  grid-row: 3;
+  border: 1px solid black;
+  background-image: url("./images/seven.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.eight {
+  grid-column: 2;
+  grid-row: 3;
+  border: 1px solid black;
+  background-image: url("./images/eight.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.nine {
+  grid-column: 3;
+  grid-row: 3;
+  border: 1px solid black;
 }
 
 @keyframes App-logo-spin {
